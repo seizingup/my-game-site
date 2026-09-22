@@ -1,0 +1,1 @@
+Upload index.html, style.css, and script.js to the root of your GitHub Pages repository. The Web Search box opens a normal search engine; it is not a proxy or filtering bypass.

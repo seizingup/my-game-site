@@ -1,63 +1,11 @@
-// Search games
-const searchInput = document.getElementById("search");
-const gameCards = document.querySelectorAll(".game-card");
-
-searchInput.addEventListener("input", function () {
-    const searchTerm = searchInput.value.toLowerCase();
-
-    gameCards.forEach(function (card) {
-        const gameName = card
-            .querySelector("h3")
-            .textContent
-            .toLowerCase();
-
-        const description = card
-            .querySelector("p")
-            .textContent
-            .toLowerCase();
-
-        if (
-            gameName.includes(searchTerm) ||
-            description.includes(searchTerm)
-        ) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-});
-
-
-// Category filtering
-function filterGames(category) {
-    gameCards.forEach(function (card) {
-
-        if (
-            category === "all" ||
-            card.dataset.category === category
-        ) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-
-    });
-}
-
-
-// Game buttons
-function playGame(game) {
-
-    if (game === "snake") {
-        alert("Snake will be added here!");
-    }
-
-    else if (game === "pong") {
-        alert("Pong will be added here!");
-    }
-
-    else if (game === "memory") {
-        alert("Memory will be added here!");
-    }
-
-}
+const GAMES=[{"id": 1, "name": "Neon Snake", "type": "snake"}, {"id": 2, "name": "Cyber Snake", "type": "snake"}, {"id": 3, "name": "Pixel Snake", "type": "snake"}, {"id": 4, "name": "Turbo Snake", "type": "snake"}, {"id": 5, "name": "Astro Snake", "type": "snake"}, {"id": 6, "name": "Neon Pong", "type": "pong"}, {"id": 7, "name": "Cyber Pong", "type": "pong"}, {"id": 8, "name": "Gravity Pong", "type": "pong"}, {"id": 9, "name": "Turbo Pong", "type": "pong"}, {"id": 10, "name": "Classic Pong", "type": "pong"}, {"id": 11, "name": "Memory Matrix", "type": "memory"}, {"id": 12, "name": "Cyber Match", "type": "memory"}, {"id": 13, "name": "Neon Pairs", "type": "memory"}, {"id": 14, "name": "Pixel Pairs", "type": "memory"}, {"id": 15, "name": "Brain Grid", "type": "memory"}, {"id": 16, "name": "Click Rush", "type": "click"}, {"id": 17, "name": "Neon Clicker", "type": "click"}, {"id": 18, "name": "Turbo Tap", "type": "click"}, {"id": 19, "name": "Reaction Core", "type": "click"}, {"id": 20, "name": "Speed Click", "type": "click"}, {"id": 21, "name": "Dodge Zone", "type": "dodge"}, {"id": 22, "name": "Neon Dodge", "type": "dodge"}, {"id": 23, "name": "Astro Dodge", "type": "dodge"}, {"id": 24, "name": "Cyber Dodge", "type": "dodge"}, {"id": 25, "name": "Laser Dodge", "type": "dodge"}, {"id": 26, "name": "Target Blitz", "type": "target"}, {"id": 27, "name": "Neon Target", "type": "target"}, {"id": 28, "name": "Cyber Aim", "type": "target"}, {"id": 29, "name": "Quick Shot", "type": "target"}, {"id": 30, "name": "Reflex Target", "type": "target"}, {"id": 31, "name": "Math Sprint", "type": "math"}, {"id": 32, "name": "Number Rush", "type": "math"}, {"id": 33, "name": "Quick Calc", "type": "math"}, {"id": 34, "name": "Brain Sprint", "type": "math"}, {"id": 35, "name": "Equation Dash", "type": "math"}, {"id": 36, "name": "Color Match", "type": "color"}, {"id": 37, "name": "Neon Colors", "type": "color"}, {"id": 38, "name": "Color Rush", "type": "color"}, {"id": 39, "name": "Spectrum", "type": "color"}, {"id": 40, "name": "Hue Hunter", "type": "color"}, {"id": 41, "name": "Word Blitz", "type": "word"}, {"id": 42, "name": "Letter Rush", "type": "word"}, {"id": 43, "name": "Word Reactor", "type": "word"}, {"id": 44, "name": "Typing Dash", "type": "word"}, {"id": 45, "name": "Spell Sprint", "type": "word"}, {"id": 46, "name": "Coin Catcher", "type": "catch"}, {"id": 47, "name": "Star Catcher", "type": "catch"}, {"id": 48, "name": "Gem Catcher", "type": "catch"}, {"id": 49, "name": "Orb Catcher", "type": "catch"}, {"id": 50, "name": "Pixel Catcher", "type": "catch"}, {"id": 51, "name": "Astro Runner", "type": "runner"}, {"id": 52, "name": "Neon Runner", "type": "runner"}, {"id": 53, "name": "Cyber Runner", "type": "runner"}, {"id": 54, "name": "Space Runner", "type": "runner"}, {"id": 55, "name": "Hyper Runner", "type": "runner"}, {"id": 56, "name": "Gravity Flip", "type": "flip"}, {"id": 57, "name": "Neon Flip", "type": "flip"}, {"id": 58, "name": "Cyber Flip", "type": "flip"}, {"id": 59, "name": "Orbit Flip", "type": "flip"}, {"id": 60, "name": "Pulse Flip", "type": "flip"}, {"id": 61, "name": "Block Breaker", "type": "break"}, {"id": 62, "name": "Neon Breaker", "type": "break"}, {"id": 63, "name": "Cyber Breaker", "type": "break"}, {"id": 64, "name": "Brick Blitz", "type": "break"}, {"id": 65, "name": "Pixel Breaker", "type": "break"}, {"id": 66, "name": "Maze Runner", "type": "maze"}, {"id": 67, "name": "Neon Maze", "type": "maze"}, {"id": 68, "name": "Cyber Maze", "type": "maze"}, {"id": 69, "name": "Grid Escape", "type": "maze"}, {"id": 70, "name": "Laser Maze", "type": "maze"}, {"id": 71, "name": "Tower Tap", "type": "tower"}, {"id": 72, "name": "Neon Tower", "type": "tower"}, {"id": 73, "name": "Stack Rush", "type": "tower"}, {"id": 74, "name": "Cyber Stack", "type": "tower"}, {"id": 75, "name": "Perfect Stack", "type": "tower"}, {"id": 76, "name": "Orbit Catch", "type": "orbit"}, {"id": 77, "name": "Planet Catch", "type": "orbit"}, {"id": 78, "name": "Astro Orbit", "type": "orbit"}, {"id": 79, "name": "Gravity Catch", "type": "orbit"}, {"id": 80, "name": "Cosmic Catch", "type": "orbit"}, {"id": 81, "name": "Laser Lines", "type": "lines"}, {"id": 82, "name": "Neon Lines", "type": "lines"}, {"id": 83, "name": "Cyber Lines", "type": "lines"}, {"id": 84, "name": "Pulse Lines", "type": "lines"}, {"id": 85, "name": "Grid Lines", "type": "lines"}, {"id": 86, "name": "2048 Neon", "type": "merge"}, {"id": 87, "name": "2048 Cyber", "type": "merge"}, {"id": 88, "name": "2048 Pixel", "type": "merge"}, {"id": 89, "name": "Number Merge", "type": "merge"}, {"id": 90, "name": "Grid Merge", "type": "merge"}, {"id": 91, "name": "Reaction Test", "type": "reaction"}, {"id": 92, "name": "Neon Reaction", "type": "reaction"}, {"id": 93, "name": "Cyber Reaction", "type": "reaction"}, {"id": 94, "name": "Reflex Lab", "type": "reaction"}, {"id": 95, "name": "Speed Reflex", "type": "reaction"}, {"id": 96, "name": "Space Miner", "type": "miner"}, {"id": 97, "name": "Neon Miner", "type": "miner"}, {"id": 98, "name": "Astro Miner", "type": "miner"}, {"id": 99, "name": "Gem Miner", "type": "miner"}, {"id": 100, "name": "Cyber Miner", "type": "miner"}];const icons={snake:"🐍",pong:"🏓",memory:"🧠",click:"⚡",dodge:"💠",target:"🎯",math:"➗",color:"🎨",word:"⌨️",catch:"💎",runner:"🏃",flip:"🔄",break:"🧱",maze:"🌀",tower:"🏗️",orbit:"🪐",lines:"📐",merge:"🔢",reaction:"⚡",miner:"⛏️",signal:"📡"};let active="all";const grid=document.getElementById("grid"),find=document.getElementById("find"),filters=document.getElementById("filters");let types=["all",...new Set(GAMES.map(g=>g.type))];filters.innerHTML=types.map(t=>`<button class="filter ${t==="all"?"active":""}" data-t="${t}">${t}</button>`).join("");filters.onclick=e=>{if(!e.target.dataset.t)return;active=e.target.dataset.t;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");render()};find.oninput=render;function render(){let q=find.value.toLowerCase(),a=GAMES.filter(g=>(active==="all"||g.type===active)&&g.name.toLowerCase().includes(q));document.getElementById("count").textContent=a.length+" games";grid.innerHTML=a.map(g=>`<article class="card"><div class="num">#${String(g.id).padStart(3,"0")}</div><div class="ico">${icons[g.type]}</div><h3>${g.name}</h3><p>${g.type} challenge</p><button class="play" onclick="openGame(${g.id})">PLAY</button></article>`).join("")}render();
+const modal=document.getElementById("modal"),area=document.getElementById("area");document.getElementById("x").onclick=()=>modal.classList.remove("show");function openGame(id){let g=GAMES.find(x=>x.id===id);document.getElementById("title").textContent=g.name;document.getElementById("kind").textContent=g.type+" challenge";area.innerHTML="";modal.classList.add("show");engine(g.type)}
+function engine(t){if(t==="snake")snake();else if(t==="pong")pong();else if(t==="memory")memory();else if(t==="math")math();else if(t==="color")color();else if(t==="target"||t==="dodge"||t==="catch"||t==="orbit"||t==="miner"||t==="signal")target();else clicker()}
+function clicker(){let s=0,t=15;area.innerHTML=`<div class="game"><p>Click as many times as possible in 15 seconds.</p><h2 id="sc">0</h2><button class="big" id="tap">TAP</button></div>`;tap.onclick=()=>{if(t>0)sc.textContent=++s};let z=setInterval(()=>{t--;tap.textContent=t>0?`TAP — ${t}s`:"TIME!";if(t<=0)clearInterval(z)},1000)}
+function target(){area.innerHTML=`<div class="game"><p>Hit the target for 20 seconds.</p><h2 id="sc">0</h2><div class="arena" id="arena"></div></div>`;let s=0;function spawn(){arena.innerHTML="";let b=document.createElement("button");b.className="target";b.style.left=Math.random()*85+"%";b.style.top=Math.random()*75+"%";b.onclick=()=>{sc.textContent=++s;spawn()};arena.appendChild(b)}spawn();setTimeout(()=>arena.innerHTML=`<h2 style="text-align:center;padding-top:130px">Final score: ${s}</h2>`,20000)}
+function memory(){let v=["◆","★","●","▲","◆","★","●","▲"].sort(()=>Math.random()-.5);area.innerHTML=`<div class="game"><p>Match the pairs.</p><div class="memory">${v.map(x=>`<button class="mem" data-v="${x}">?</button>`).join("")}</div></div>`;let o=[];document.querySelectorAll(".mem").forEach(b=>b.onclick=()=>{if(b.classList.contains("open")||o.length===2)return;b.classList.add("open");b.textContent=b.dataset.v;o.push(b);if(o.length===2){if(o[0].dataset.v!==o[1].dataset.v)setTimeout(()=>o.forEach(x=>{x.classList.remove("open");x.textContent="?"}),500);o=[]}})}
+function math(){let a=Math.floor(Math.random()*20)+1,b=Math.floor(Math.random()*20)+1;area.innerHTML=`<div class="game"><h2>${a} + ${b}</h2><input id="ans" type="number"><button class="big" onclick="result.textContent=Number(ans.value)==${a+b}?'Correct!':'Try again.'">Check</button><p id="result"></p></div>`}
+function color(){let c=["red","blue","green","yellow","purple","cyan"],t=c[Math.floor(Math.random()*c.length)];area.innerHTML=`<div class="game"><p>Click: <b>${t}</b></p>${c.map(x=>`<button class="big" style="margin:5px" onclick="result.textContent=this.textContent==='${t}'?'Correct!':'Nope!'">${x}</button>`).join("")}<p id="result"></p></div>`}
+function snake(){area.innerHTML='<div class="game"><p>Arrow keys / WASD</p><canvas class="canvas" id="cv" width="420" height="420"></canvas></div>';let c=cv,x=c.getContext("2d"),s=[{x:200,y:200}],dx=20,dy=0,f={x:100,y:100};onkeydown=e=>{let k=e.key.toLowerCase();if((k=="w"||e.key=="ArrowUp")&&dy==0)dx=0,dy=-20;if((k=="s"||e.key=="ArrowDown")&&dy==0)dx=0,dy=20;if((k=="a"||e.key=="ArrowLeft")&&dx==0)dx=-20,dy=0;if((k=="d"||e.key=="ArrowRight")&&dx==0)dx=20,dy=0};setInterval(()=>{let h={x:s[0].x+dx,y:s[0].y+dy};if(h.x<0||h.y<0||h.x>=420||h.y>=420||s.some(p=>p.x==h.x&&p.y==h.y))return;s.unshift(h);if(h.x==f.x&&h.y==f.y)f={x:Math.floor(Math.random()*21)*20,y:Math.floor(Math.random()*21)*20};else s.pop();x.fillStyle="#05070d";x.fillRect(0,0,420,420);x.fillStyle="#22d3ee";s.forEach(p=>x.fillRect(p.x,p.y,18,18));x.fillStyle="#a855f7";x.fillRect(f.x,f.y,18,18)},110)}
+function pong(){area.innerHTML='<div class="game"><p>W/S moves your paddle.</p><canvas class="canvas" id="pc" width="600" height="330"></canvas></div>';let c=pc,x=c.getContext("2d"),py=135,cy=135,bx=300,by=165,vx=4,vy=3;onkeydown=e=>{if(e.key.toLowerCase()=="w")py-=20;if(e.key.toLowerCase()=="s")py+=20};setInterval(()=>{py=Math.max(0,Math.min(270,py));cy+=(by<cy+30?-2:2);cy=Math.max(0,Math.min(270,cy));bx+=vx;by+=vy;if(by<0||by>330)vy*=-1;if(bx<35&&by>py&&by<py+60)vx=Math.abs(vx);if(bx>565&&by>cy&&by<cy+60)vx=-Math.abs(vx);if(bx<0||bx>600)bx=300;x.fillStyle="#05070d";x.fillRect(0,0,600,330);x.fillStyle="#67e8f9";x.fillRect(15,py,12,60);x.fillStyle="#a855f7";x.fillRect(573,cy,12,60);x.beginPath();x.arc(bx,by,8,0,7);x.fill()},16)}
+document.getElementById("web").onsubmit=e=>{e.preventDefault();let q=document.getElementById("q").value.trim();if(q)location.href=document.getElementById("e").value+encodeURIComponent(q)};document.getElementById("theme").onclick=()=>document.body.classList.toggle("light");
